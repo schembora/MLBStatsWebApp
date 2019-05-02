@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}<link rel ="shortcut icon" href="{% static 'logos/preview.ico'%}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>MLB Statistics</title>
+</head>
+
+<body>
+        <nav class="black" role="navigation">
+                <div class="nav-wrapper container">
+                  <a id="logo-container" href="../" class="brand-logo">MLB Stats</a>
+                  <ul class="right hide-on-med-and-down">
+                    <li><a href="#">Search By Player</a></li>
+                  </ul>
+                </div>
+              </nav>
+              <br><br>
+        <h1 class="header center teal-text text-lighten-2">Teams</h1>
+    <div style="margin: auto; width: 50%">
+            {% for team in teams %}
+                    {% load static %}<a href ="{% url 'team' parameter=team.team_id %}"><img height="50" width="50" src="{% static 'logos/'%}{{team.name_abbrev}}.png"  alt="" class="circle"> </a>
+                    {% if team.name_abbrev == "DET" or team.name_abbrev == "OAK" %}
+                        <br>
+                    {% endif %}
+            {% endfor %}
+    </div>
+    
+</body>
+</html>

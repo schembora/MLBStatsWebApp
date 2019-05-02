@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}<link rel ="shortcut icon" href="{% static 'logos/'%}{{team.name_abbrev}}.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>{{team.name_display_full}}</title>
+</head>
+
+<body>
+    <nav class="black" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="../" class="brand-logo">MLB Stats</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Search By Player</a></li>
+      </ul>
+    </div>
+  </nav>
+  <br><br>
+  <h1 class="header center teal-text text-lighten-2">{{team.name_display_full}}</h1>
+  <div class="collection">
+            {% for player in players %} 
+            <a href ="{% url 'player' parameter=player.player_id %}" style="text-align: center"class=  "collection-item">{{ player.name_display_first_last }} | {{player.position_txt}} </a>
+            {% endfor %}
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
