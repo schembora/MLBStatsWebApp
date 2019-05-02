@@ -3,9 +3,9 @@ import json
 from pymongo import MongoClient
 
 
-client = MongoClient('localhost', 27017)
+client = MongoClient("mongodb://<admin>:<Qazedc123!>@ds151086.mlab.com:51086")
 
-db = client.mlb_data
+db = client.heroku_q37d8qnw
 posts = db.teams
 
 posts1 = db.hitters
