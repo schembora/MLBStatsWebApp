@@ -11,7 +11,7 @@ posts1 = db.hitters
 posts2=  db.pitchers
 
 #
-'''
+
 URLTeam = "http://lookup-service-prod.mlb.com/json/named.team_all_season.bam?sport_code='mlb'&all_star_sw='N'&sort_order=name_asc&season='2019'"
 URLEachTeam = "http://lookup-service-prod.mlb.com/json/named.roster_40.bam?team_id="
 URLSeasonBatting = "http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2019'&player_id="
@@ -21,10 +21,35 @@ PARAMS = {'address':location}
 r = requests.get(url = URLTeam, params = PARAMS)
 
 data = r.json()
-'''
+
 #print(data)
 
 
+#Need function to update data everyday
+
+def updatePitcherStats():
+    for post in posts.find():
+        newURL = URLEachTeam + "\'" + post["team_id"] + "\'"
+        req = requests.get(url = newURL, params = PARAMS)
+        for element in req.json()["roster_40"]["queryResults"]["row"]:
+            newURL1 = URLSeasonPitching + "\'" + element["player_id"] + "\'"
+            req1 = requests.get(url = newURL1, params = PARAMS)
+            newElement = req1.json()["sport_pitching_tm"]["queryResults"]
+            if int(newElement["totalSize"]) == 1:
+                #result = posts2.insert_one(newElement["row"])   
+                return posts2.update_one({"player_id": newElement["row"]["player_id"]}, {"$set": newElement["row"]})
+
+def updateHitterStats():
+    for post in posts.find():
+            newURL = URLEachTeam + "\'" + post["team_id"] + "\'"
+            req = requests.get(url = newURL, params = PARAMS)
+            for element in req.json()["roster_40"]["queryResults"]["row"]:
+                newURL1 = URLSeasonBatting + "\'" + element["player_id"] + "\'"
+                req1 = requests.get(url = newURL1, params = PARAMS)
+                newElement = req1.json()["sport_hitting_tm"]["queryResults"]
+                if int(newElement["totalSize"]) == 1:
+                    #result = posts1.insert_one(newElement["row"])
+                    return posts1.update_one({"player_id": newElement["row"]["player_id"]}, {"$set": newElement["row"]})
 
 # adding each team to database
 #for element in data["team_all_season"]["queryResults"]["row"]:
@@ -38,17 +63,6 @@ data = r.json()
         db.totalPlayers.insert_one(element)
 '''
 
-'''
-for post in posts.find():
-    newURL = URLEachTeam + "\'" + post["team_id"] + "\'"
-    req = requests.get(url = newURL, params = PARAMS)
-    for element in req.json()["roster_40"]["queryResults"]["row"]:
-        newURL1 = URLSeasonPitching + "\'" + element["player_id"] + "\'"
-        req1 = requests.get(url = newURL1, params = PARAMS)
-        newElement = req1.json()["sport_pitching_tm"]["queryResults"]
-        if int(newElement["totalSize"]) == 1:
-            result = posts2.insert_one(newElement["row"])
-'''
 #add batting stats to each player
 
 

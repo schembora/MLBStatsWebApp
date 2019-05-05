@@ -29,3 +29,4 @@ def player(request, parameter):
         playerStats = getData.getHitterByID(parameter)
     html = t.render({'player': player, 'playerStats': playerStats})
     return HttpResponse(html)
+
