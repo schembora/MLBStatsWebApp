@@ -18,6 +18,21 @@
   </nav>
   <br><br>
   <h1 class="header center teal-text text-lighten-2">{{team.name_display_full}}</h1>
+  <div style="margin:auto; width:50%; padding-left:15%"class="center row">
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Team Info</span>
+          <p> City: {{team.address_city}} </p> <br>
+          <p> League: {{team.league_full}} </p> <br>
+          <p> Team Website: <a href ="{{team.base_url}}"> {{team.base_url}} </a> </p> <br>
+          <p> Division: {{team.division_full}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2> Team Info </h2>
+ 
   <div class="collection">
             {% for player in players %} 
             <a href ="{% url 'player' parameter=player.player_id %}" style="text-align: center"class=  "collection-item">{{ player.name_display_first_last }} | {{player.position_txt}} </a>

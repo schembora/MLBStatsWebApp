@@ -20,12 +20,9 @@
               <br><br>
         <h1 style="margin: auto; width: 50%" class="header center card-panel teal white-text ">TEAMS</h1>
         <br>
-    <div style="margin: auto; width: 50%" class="card-panel teal lighten-2>
+    <div style="margin: auto; width: 50%" class="card-panel teal lighten-2">
             {% for team in teams %}
                     {% load static %}<a href ="{% url 'team' parameter=team.team_id %}"><img height="50" width="50" src="{% static 'logos/'%}{{team.name_abbrev}}.png"  alt="" class="circle"> </a>
-                    {% if team.name_abbrev == "DET" or team.name_abbrev == "OAK" %}
-                        <br>
-                    {% endif %}
             {% endfor %}
     </div>
 </body>
