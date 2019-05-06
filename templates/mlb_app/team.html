@@ -23,8 +23,5 @@
             <a href ="{% url 'player' parameter=player.player_id %}" style="text-align: center"class=  "collection-item">{{ player.name_display_first_last }} | {{player.position_txt}} </a>
             {% endfor %}
     </div>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
 </body>
 </html>

@@ -76,11 +76,7 @@ WSGI_APPLICATION = 'mlb.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'mlb_data',
-        'HOST': 'localhost',
-    }
+    
 }
 
 
