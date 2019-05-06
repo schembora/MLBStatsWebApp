@@ -13,12 +13,12 @@ def index(request):
     html = t.render({"teams": teams})  
     return HttpResponse(html)   
     '''
-    t = loader.get_template("mlb_app/index.html")
+    t = loader.get_template("mlb_app/home.html")
     html = t.render()
     return HttpResponse(html)
 
 def teamList(request):
-    t = loader.get_template("mlb_app/base.html")
+    t = loader.get_template("mlb_app/teamlist.html")
     teams = getData.getTeams()
     html = t.render({"teams": teams})  
     return HttpResponse(html)  
