@@ -7,12 +7,24 @@
     <title>{{player.name_display_first_last}}</title>
 </head>
 
-<body>
-    <h1 class="header center teal-text text-lighten-2">{{player.name_display_first_last}}</h1> 
+<body background="https://secure.milb.com/assets/images/8/4/4/290288844/cuts/1280x720/cut.jpg"
+  style="background-repeat: yes-repeat; background-size: 100%">
+  <nav class="black" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="../" class="brand-logo">Home</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Search By Player</a></li>
+        <li><a href="/teamList.html">Search By Team</a></li>
+      </ul>
+    </div>
+  </nav>
+  <br><br><br><br>
+    <h1 class="header center teal-text text-lighten-2"><h1 style="margin: auto; width: 50%" class="header center card-panel teal white-text ">
+      {{player.name_display_first_last}}</h1> <br><br>
     {% if playerStats == None %}
     <h2> No stats could be found for this player </h2>
     {% else %}
-    <table class="striped">
+    <table class="striped centered highlight teal lighten-2  white-text">
         <thead>
           <tr>
             <th>Stat/Info</th>
