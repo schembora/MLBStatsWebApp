@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from mlb_app import getData
 from django.template import loader, Context
+from graphos.sources.simple import SimpleDataSource
+from graphos.renderers.gchart import BarChart
 
 
 def index(request):
@@ -36,7 +38,15 @@ def player(request, parameter):
     if "P" in player['position_txt']:
         playerStats = getData.getPitcherByID(parameter)
     else:
+        data = getData.avgStatsHitters()
         playerStats = getData.getHitterByID(parameter)
-    html = t.render({'player': player, 'playerStats': playerStats})
+        graphData = [ 
+            ['Stat', 'Player', 'MLB Average'],
+            ['Average', round(float(playerStats["avg"]),3), data[0]],
+            ['On Base Percentage', round(float(playerStats["obp"]),3), data[1] ]
+        ]
+        data_source = SimpleDataSource(data=graphData)
+        chart = BarChart(data_source, width="100%")
+    html = t.render({'player': player, 'playerStats': playerStats, 'chart': chart})
     return HttpResponse(html)
 

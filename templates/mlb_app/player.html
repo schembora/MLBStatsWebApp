@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+    </script>
     <title>{{player.name_display_first_last}}</title>
 </head>
 
@@ -41,5 +45,6 @@
         </tbody>
       </table>
      {% endif %}      
+     {{chart.as_html}}
 </body>
 </html>

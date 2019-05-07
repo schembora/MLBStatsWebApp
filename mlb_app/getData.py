@@ -1,6 +1,7 @@
 import requests
 import json
 from pymongo import MongoClient
+from functools import reduce
 
 
 client = MongoClient("mongodb://admin:Qazedc123!@ds151086.mlab.com:51086/heroku_q37d8qnw")
@@ -84,4 +85,13 @@ def getPitcherByID(playerID):
     return db.pitchers.find_one({"player_id": playerID})
 def getHitterByID(playerID):
     return db.hitters.find_one({"player_id": playerID})
+
+def avgStatsHitters():
+    avgAList = db.hitters.distinct('avg')
+    avgAList = [x for x in avgAList if x!= ".---"]
+    avgAvg = round(reduce(lambda x, y: float(x)+float(y), avgAList)/ len(avgAList), 3)
+    avgOList = db.hitters.distinct("obp")
+    avgOList = [x for x in avgOList if x!= ".---"]
+    avgObp = round(reduce(lambda x, y: float(x)+float(y), avgOList)/ len(avgOList), 3)
+    return [avgAvg, avgObp]
 
