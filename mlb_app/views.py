@@ -37,16 +37,27 @@ def player(request, parameter):
     player = getData.getPlayerByID(parameter)   
     if "P" in player['position_txt']:
         playerStats = getData.getPitcherByID(parameter)
+        if playerStats != None:
+            data = getData.avgStatsPitchers()
+            graphData = [ 
+                ["Stat", player["name_display_first_last"], "MLB Average"],
+                ['ERA', float(playerStats['era']), data[0]],
+                ['WHIP', float(playerStats['whip']), data[1]]
+            ]
     else:
         data = getData.avgStatsHitters()
         playerStats = getData.getHitterByID(parameter)
-        graphData = [ 
-            ['Stat', 'Player', 'MLB Average'],
-            ['Average', round(float(playerStats["avg"]),3), data[0]],
-            ['On Base Percentage', round(float(playerStats["obp"]),3), data[1] ]
-        ]
+        if playerStats != None:
+            graphData = [ 
+                ['Stat', player["name_display_first_last"], 'MLB Average'],
+                ['Average', round(float(playerStats["avg"]),3), data[0]],
+                ['On Base Percentage', round(float(playerStats["obp"]),3), data[1] ]
+            ]
+    if playerStats != None:
         data_source = SimpleDataSource(data=graphData)
         chart = BarChart(data_source, width="100%")
-    html = t.render({'player': player, 'playerStats': playerStats, 'chart': chart})
+        html = t.render({'player': player, 'playerStats': playerStats, 'chart': chart})
+    else:
+        html = t.render({'player': player, 'playerStats': playerStats})
     return HttpResponse(html)
 

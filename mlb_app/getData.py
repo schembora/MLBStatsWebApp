@@ -95,3 +95,13 @@ def avgStatsHitters():
     avgObp = round(reduce(lambda x, y: float(x)+float(y), avgOList)/ len(avgOList), 3)
     return [avgAvg, avgObp]
 
+def avgStatsPitchers():
+    avgEList = db.pitchers.distinct('era')
+    avgEList = [x for x in avgEList if x!= "*.**"]
+    avgEra = round(reduce(lambda x, y: float(x)+float(y), avgEList)/ len(avgEList),2)
+    avgWList = db.pitchers.distinct('whip')
+    avgWList = [x for x in avgWList if x!= "*.**"]
+    avgWhip = round(reduce(lambda x, y: float(x)+float(y), avgWList)/ len(avgWList),2)
+    return [avgEra, avgWhip]
+
+avgStatsPitchers()
