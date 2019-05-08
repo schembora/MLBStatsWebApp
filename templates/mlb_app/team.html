@@ -7,12 +7,13 @@
     <title>{{team.name_display_full}}</title>
 </head>
 
-<body>
+<body background="https://secure.milb.com/assets/images/8/4/4/290288844/cuts/1280x720/cut.jpg" style="background-repeat: yes-repeat; background-size: 100%">
     <nav class="black" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="../" class="brand-logo">MLB Stats</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Search By Player</a></li>
+        <li><a href="/search.html">Search By Player</a></li>
+        <li><a href="/teamList.html">Search By Team</a></li>
       </ul>
     </div>
   </nav>
@@ -31,7 +32,7 @@
       </div>
     </div>
   </div>
-  <h2> Team Info </h2>
+  <h2 class="header center blue-text"> Roster </h2>
  
   <div class="collection">
             {% for player in players %} 

@@ -21,25 +21,14 @@
       </ul>
     </div>
   </nav>
-  <br><br><br><br>
-  
-  <div style="margin: auto; width: 50%" class="card-panel teal lighten-2  white-text">
-    <p>
-      Welcome Visitors! <br><br>
-      This is the first stop to getting to know how your 
-      favorite teams and players are performing in America's favorite past time!<br><br>
-      Please visit the links to the other pages and check out our layout of 
-      everything that matters. <br><br>
-      Don't forget to share this page with your friends!<br><br> 
-      Scroll down for news content!
-      
-    </p>
-  </div>
+  {% if player == None %}
+  <h2> No player found </h2>
+  {% else %}
   <br> <br> <br>
-  <div style="margin:auto; width:50%">
-    <a class="twitter-timeline" href="https://twitter.com/MLB?ref_src=twsrc%5Etfw">Tweets by MLB</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <div class="collection">
+  <a href ="{% url 'player' parameter=player.player_id %}" style="text-align: center"class=  "collection-item">{{ player.name_display_first_last }} | {{player.position_txt}} </a>
   </div>
- 
+  {% endif %}
 </body>
 
 </html>

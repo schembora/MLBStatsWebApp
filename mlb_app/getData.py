@@ -86,6 +86,8 @@ def getPitcherByID(playerID):
 def getHitterByID(playerID):
     return db.hitters.find_one({"player_id": playerID})
 
+
+
 def avgStatsHitters():
     avgAList = db.hitters.distinct('avg')
     avgAList = [x for x in avgAList if x!= ".---"]

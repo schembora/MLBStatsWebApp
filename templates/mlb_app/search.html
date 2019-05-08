@@ -21,24 +21,17 @@
       </ul>
     </div>
   </nav>
-  <br><br><br><br>
+  <div class="row">
+    <form class="col s12" method="POST" action="/searchPlayer">
+        {% csrf_token %} 
+      <input style="background-color: blue" type="search" placeholder="Search By Player Name" name="textField">
+      <div style="text-align:center">
+      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      </button>
+    </div>
+    </form>
+  </div>
   
-  <div style="margin: auto; width: 50%" class="card-panel teal lighten-2  white-text">
-    <p>
-      Welcome Visitors! <br><br>
-      This is the first stop to getting to know how your 
-      favorite teams and players are performing in America's favorite past time!<br><br>
-      Please visit the links to the other pages and check out our layout of 
-      everything that matters. <br><br>
-      Don't forget to share this page with your friends!<br><br> 
-      Scroll down for news content!
-      
-    </p>
-  </div>
-  <br> <br> <br>
-  <div style="margin:auto; width:50%">
-    <a class="twitter-timeline" href="https://twitter.com/MLB?ref_src=twsrc%5Etfw">Tweets by MLB</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  </div>
  
 </body>
 

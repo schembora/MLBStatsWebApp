@@ -9,12 +9,6 @@ from graphos.renderers.gchart import BarChart
 
 
 def index(request):
-    #return HttpResponse("Gerrit Cole's era is: " + getData.getPitcherByName("Gerrit Cole")["era"])
-    '''t = loader.get_template("mlb_app/base.html")
-    teams = getData.getTeams()
-    html = t.render({"teams": teams})  
-    return HttpResponse(html)   
-    '''
     t = loader.get_template("mlb_app/home.html")
     html = t.render()
     return HttpResponse(html)
@@ -32,6 +26,14 @@ def team(request, parameter):
     html = t.render({"team" : team, "players": players})
     return HttpResponse(html)
 
+def search(request):
+    return render(request, "mlb_app/search.html")
+def searchPlayers(request):
+    if request.method == "POST":
+        playerName = request.POST.get('textField', None)
+        playerData = getData.getPlayerByName(playerName)
+        return render(request, "mlb_app/searchPlayers.html", {"player": playerData})
+    return None
 def player(request, parameter):
     t = loader.get_template("mlb_app/player.html")
     player = getData.getPlayerByID(parameter)   
