@@ -30,6 +30,7 @@
     {% else %}
     <table class="striped centered highlight teal lighten-2  white-text">
         <thead>
+          {{chart.as_html}}
           <tr>
             <th>Stat/Info</th>
             <th>Value</th>
@@ -44,7 +45,7 @@
             {% endfor %}
         </tbody>
       </table>
-      {{chart.as_html}}
+      
      {% endif %}      
 </body>
 </html>

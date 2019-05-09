@@ -21,15 +21,23 @@
       </ul>
     </div>
   </nav>
-  <div class="row">
+  <br><br>
+  <h1 class="header center card-panel teal white-text "style="margin:auto; width:50%">Search Player Names </h1>
+  <br><br>
+  <div class="row" style="margin: auto; width: 50%">
     <form class="col s12" method="POST" action="/searchPlayer">
         {% csrf_token %} 
-      <input style="background-color: blue" type="search" placeholder="Search By Player Name" name="textField">
+      <input style="background-color: white" type="search" placeholder="  Search By Player Name" name="textField">
       <div style="text-align:center">
       <button class="btn waves-effect waves-light" type="submit" name="action">Submit
       </button>
     </div>
     </form>
+  </div>
+  <br><br>
+  <h3 class="header center card-panel teal white-text "style="margin:auto; width:50%"> Some players you might want to search </h3> </h3>
+  <div style="margin:auto; width:50%">
+    <iframe src="https://www.mlb.com/news/top-100-mlb-players-for-2019-c303970816"  style="margin:auto; width:100%; height:800px" ></iframe>
   </div>
   
  
