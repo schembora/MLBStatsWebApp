@@ -29,7 +29,7 @@ data = r.json()
 #Need function to update data everyday
 
 #update putcher stats
-'''for post in posts.find():
+for post in posts.find():
     newURL = URLEachTeam + "\'" + post["team_id"] + "\'"
     req = requests.get(url = newURL, params = PARAMS)
     for element in req.json()["roster_40"]["queryResults"]["row"]:
@@ -50,7 +50,7 @@ for post in posts.find():
             if int(newElement["totalSize"]) == 1:
                     #result = posts1.insert_one(newElement["row"])
                 result =  posts1.update_one({"player_id": newElement["row"]["player_id"]}, {"$set": newElement["row"]})
-'''
+
 # adding each team to database
 #for element in data["team_all_season"]["queryResults"]["row"]:
     #result = posts.insert_one(element)
