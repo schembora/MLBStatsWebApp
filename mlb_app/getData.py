@@ -4,9 +4,9 @@ from pymongo import MongoClient
 from functools import reduce
 
 
-client = MongoClient("mongodb://admin:Qazedc123!@ds151086.mlab.com:51086/heroku_q37d8qnw")
+client = MongoClient("DATABASE")
 
-db = client["heroku_q37d8qnw"]
+db = client["TABLE"]
 posts = db.teams
 posts1 = db.hitters
 posts2=  db.pitchers
